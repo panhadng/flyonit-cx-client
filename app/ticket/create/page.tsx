@@ -29,7 +29,7 @@ const Ticket = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
-    fetch("http://127.0.0.1:5000/api/tickets", {
+    fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
