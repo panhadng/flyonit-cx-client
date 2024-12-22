@@ -48,7 +48,7 @@ export default function Companies() {
     );
   }
 
-  const classic = true;
+  const classic = false;
 
   if (classic) {
     return (
