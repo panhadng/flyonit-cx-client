@@ -28,6 +28,7 @@ const Ticket = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    console.log("API URL:", process.env.NEXT_PUBLIC_API_URL);
     fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/tickets`, {
       method: "POST",
       headers: {
@@ -35,7 +36,12 @@ const Ticket = () => {
       },
       body: JSON.stringify(formData),
     })
-      .then((response) => response.json())
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        return response.json();
+      })
       .then(() => {
         setNotification({
           type: "success",
@@ -50,14 +56,12 @@ const Ticket = () => {
           setNotification({ type: null, message: "" });
         }, 5000);
       })
-      .catch(() => {
+      .catch((error) => {
+        console.error("Fetch error:", error);
         setNotification({
           type: "error",
           message: "Error submitting ticket. Please try again.",
         });
-        setTimeout(() => {
-          setNotification({ type: null, message: "" });
-        }, 5000);
       })
       .finally(() => {
         setIsLoading(false);
