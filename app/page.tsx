@@ -69,7 +69,7 @@ const Ticket = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 py-12">
       {notification.type && (
         <div
           className={`fixed top-4 right-4 p-4 rounded-lg shadow-lg max-w-md animate-fade-in ${
@@ -109,7 +109,7 @@ const Ticket = () => {
         </div>
       )}
 
-      <div className="max-w-2xl mx-auto p-8 bg-white rounded-lg shadow-lg">
+      <div className="w-full h-auto max-w-full max-h-screen lg:w-[700px] lg:h-[700px] mx-auto p-8 bg-white rounded-lg shadow-lg flex flex-col justify-center">
         <div className="text-center mb-8">
           <Image
             src="/images/logo.png"
